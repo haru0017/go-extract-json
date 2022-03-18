@@ -46,6 +46,7 @@ func D[T Cast](res any, n ...any) (T, error){
 	return errRes, errors.New(fmt.Sprintf("Error: Value cannot be cast with type (%T)", response))
 }
 
+// Search for key
 func HelpK[T Cast](res any, key string) (bool, T, error) {
 	var errRes T
 	switch res.(type) {
@@ -57,7 +58,7 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 				if ok {
 					return true, response, nil
 				}
-				return true, errRes, errors.New(fmt.Sprintf(`Value cannot be cast with type (%T)`, response)) // not working error message errors.New(fmt.Sprintf("Error: Value cannot be cast with type (%T)", key))
+				return true, errRes, errors.New(fmt.Sprintf(`Value cannot be cast with type (%T)`, response))
 			}
 			exist, response, err := HelpK[T](res2[v], key)
 			if exist {
@@ -73,7 +74,7 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 			}
 		}
 	}
-	return false, errRes, errors.New(fmt.Sprintf(`Key "%v" not found`, key)) // not working error message errors.New(fmt.Sprintf(`Error: Key "%v" not found`, key))
+	return false, errRes, errors.New(fmt.Sprintf(`Key "%v" not found`, key))
 }
  
 // Extract value with one key
