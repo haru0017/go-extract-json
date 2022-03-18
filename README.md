@@ -1,3 +1,3 @@
 # go-extract-json
 
-Easily get any value from json decoded without defining a structure
+Easily get any value from JSON decoded without defining a structure
