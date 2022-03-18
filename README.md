@@ -2,7 +2,7 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/haru0017/go-extract-json)
 [![Go Reference](https://pkg.go.dev/badge/github.com/haru0017/go-extract-json.svg)](https://pkg.go.dev/github.com/haru0017/go-extract-json)
 
-Easily extract any value from JSON decoded without defining a structure
+Easily extract any value from JSON decoded without defining a structure using Go generics
 
 ## Usage
 ### `extract.D[T](obj any, index ...any) (T, error)`  
