@@ -1,4 +1,6 @@
 # go-extract-json
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/haru0017/go-extract-json)
+[![Go Reference](https://pkg.go.dev/badge/github.com/haru0017/go-extract-json.svg)](https://pkg.go.dev/github.com/haru0017/go-extract-json)
 
 Easily extract any value from JSON decoded without defining a structure
 
@@ -42,3 +44,6 @@ Extract value with one key
 ```Go
 resFloat, _ := extract.K[float64](res, "version") // resFloat: 1.18
 ```
+
+## More detailed usage
+[usage.md](https://github.com/haru0017/go-extract-json/blob/main/usage.md)
