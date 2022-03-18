@@ -37,6 +37,8 @@ func D[T Cast](res any, n ...any) (T, error){
 			} else {
 				return errRes, errors.New(fmt.Sprintf(`Error: The parameter "%v" (%T) should be int`, v, v))
 			}
+		default:
+			return errRes, errors.New(fmt.Sprintf(`"%#v" is not correctly decoded from JSON or "%v" is wrong`, res, v))
 		}
 	}
 	response, ok := res.(T)
@@ -73,6 +75,10 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 				return true, response, err
 			}
 		}
+	case string:
+	case float64:
+	default:
+	  	return true, errRes, errors.New(fmt.Sprintf(`"%#v" is not correctly decoded from JSON`, res))
 	}
 	return false, errRes, errors.New(fmt.Sprintf(`Key "%v" not found`, key))
 }
