@@ -75,6 +75,12 @@ func TestD(t *testing.T) {
 
 	_, err = D[string](res, "functions", 2, "function")
 	ReturnErr(t, err)
+
+	_, err = D[string]("hoge", "package", "author")
+	ReturnErr(t, err)
+
+	_, err = D[string]([3]int{1, 2, 3}, "package")
+	ReturnErr(t, err)
 }
 
  func TestK(t *testing.T) {
@@ -87,5 +93,11 @@ func TestD(t *testing.T) {
 	ReturnErr(t, err)
 
 	_, err = K[string](res, "star")
+	ReturnErr(t, err)
+
+	_, err = K[string]("hoge", "author")
+	ReturnErr(t, err)
+
+	_, err = K[string]([3]int{1, 2, 3}, "package")
 	ReturnErr(t, err)
 }
