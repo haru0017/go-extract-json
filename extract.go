@@ -5,12 +5,12 @@ import (
 	"errors"
 )
 
-type Cast interface {
+type cast interface {
 	string | float64 | map[string]interface{} | []interface{}
 }
 
 // Extract value by default
-func D[T Cast](res any, n ...any) (T, error){
+func D[T cast](res any, n ...any) (T, error){
 	var errRes T
 	for _, v := range n {
 		switch res.(type) {
@@ -49,7 +49,7 @@ func D[T Cast](res any, n ...any) (T, error){
 }
 
 // Search for key
-func HelpK[T Cast](res any, key string) (bool, T, error) {
+func helpK[T cast](res any, key string) (bool, T, error) {
 	var errRes T
 	switch res.(type) {
 	case map[string]interface{}:
@@ -62,7 +62,7 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 				}
 				return true, errRes, errors.New(fmt.Sprintf(`Value cannot be cast with type (%T)`, response))
 			}
-			exist, response, err := HelpK[T](res2[v], key)
+			exist, response, err := helpK[T](res2[v], key)
 			if exist {
 				return true, response, err
 			}
@@ -70,7 +70,7 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 	case []interface{}:
 		res2 := res.([]interface{})
 		for v := range res2 {
-			exist, response, err := HelpK[T](res2[v], key)
+			exist, response, err := helpK[T](res2[v], key)
 			if exist {
 				return true, response, err
 			}
@@ -84,9 +84,9 @@ func HelpK[T Cast](res any, key string) (bool, T, error) {
 }
  
 // Extract value with one key
-func K[T Cast](res any, key string) (T, error) {
+func K[T cast](res any, key string) (T, error) {
 	var errRes T
-	exist, response, err := HelpK[T](res, key)
+	exist, response, err := helpK[T](res, key)
 	if exist && err == nil {
 		return response, nil
 	}
